@@ -29,6 +29,31 @@ class DioClient {
           options: options,
           cancelToken: cancelToken,
           onReceiveProgress: onReceiveProgress);
+      //onreceive progress callback exposes count and total
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  //POST method
+  //add a product
+
+  Future<Response> post(String url,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      CancelToken? cancelToken,
+      ProgressCallback? onReceiveProgress,
+      ProgressCallback? onSendProgress}) async {
+    try {
+      final Response response = await _dio.post(url,
+          data: data,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress);
       return response;
     } catch (e) {
       rethrow;
