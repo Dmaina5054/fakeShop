@@ -13,5 +13,5 @@ We use Dio package to make relevant network calls and perform crud operations
 
 </ul>
 
-<h2>FakeStore API</h2>
+<h2><a href="https://fakestoreapi.com/docs">FakeStore API</a></h2>
 <p>We will use the fakestore api which provides GET, POST, PUT & DELETE resources</p>
