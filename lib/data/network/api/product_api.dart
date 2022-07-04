@@ -25,4 +25,13 @@ class ProductApi {
       rethrow;
     }
   }
+
+  Future<Response> getProducts() async {
+    try {
+      final Response response = await dioClient.get(Endpoints.products);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
