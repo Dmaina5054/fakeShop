@@ -13,4 +13,25 @@ class DioClient {
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.responseType = ResponseType.json;
   }
+
+  //Get method here
+
+  Future<Response> get(
+    String url, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final Response response = await _dio.get(url,
+          queryParameters: queryParameters,
+          options: options,
+          cancelToken: cancelToken,
+          onReceiveProgress: onReceiveProgress);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
