@@ -37,13 +37,13 @@ class Product {
     required Rating rating,
   }) =>
       Product(
-        id: id ?? this.id,
-        title: title ?? this.title,
-        price: price ?? this.price,
-        description: description ?? this.description,
-        category: category ?? this.category,
-        image: image ?? this.image,
-        rating: rating ?? this.rating,
+        id: id,
+        title: title,
+        price: price,
+        description: description,
+        category: category,
+        image: image,
+        rating: rating,
       );
 
   factory Product.fromMap(Map<String, dynamic> json) => Product(
@@ -81,8 +81,8 @@ class Rating {
     required int count,
   }) =>
       Rating(
-        rate: rate ?? this.rate,
-        count: count ?? this.count,
+        rate: rate,
+        count: count,
       );
 
   factory Rating.fromMap(Map<String, dynamic> json) => Rating(

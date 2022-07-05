@@ -10,6 +10,6 @@ class Endpoints {
   // set connectTimeout
   static const int connectionTimeout = 15000;
 
-  static const String products = '/products';
-  static const String addproducts = '/products';
+  static const String products = 'https://fakestoreapi.com/products';
+  static const String addproducts = 'https://fakestoreapi.com/products';
 }

@@ -39,5 +39,8 @@ In our scenario, the Product Repository depends on the Product API class.
 Additionaly, our Dio Client class depends on the Dio Class.
 
 <h2>Building the UI</h2>
+We build a minimalistic UI that has a Product Page with a list of Products. We use FutureBuilder to get the list of products.
+In our UI, we either show the data returned or an Error.
+
 
 

@@ -34,6 +34,8 @@ class ProductApi {
     try {
       //use our Dio class to perform Get
       final Response response = await dioClient.get(Endpoints.products);
+      print(response.statusCode);
+      print(response);
       return response;
     } catch (e) {
       rethrow;

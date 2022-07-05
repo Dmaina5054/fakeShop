@@ -1,19 +1,21 @@
 //define our product repository
 import 'package:dio/dio.dart';
-import 'package:fakeshop/data/models/producr.dart';
+import 'package:fakeshop/data/models/product.dart';
 import 'package:fakeshop/data/network/api/product_api.dart';
 
-class UserRepository {
+import '../network/dio_exception.dart';
+
+class ProductRepository {
   final ProductApi productApi;
-  UserRepository(this.productApi);
+  ProductRepository(this.productApi);
 
   //get products
   Future<List<Product>> getProducts() async {
     try {
       final response = await productApi.getProducts();
-      final products = (response.data['data'] as List)
-          .map((e) => Product.fromMap(e))
-          .toList();
+      print(response.data);
+      final products =
+          (response.data as List).map((e) => Product.fromMap(e)).toList();
 
       return products;
     } on DioError catch (e) {
