@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 class DioExceptions implements Exception {
   late String message;
 
+//return a formatted error message given a dioError
   DioExceptions.fromDioError(DioError dioError) {
     //check the type of exception throw
     switch (dioError.type) {
