@@ -44,10 +44,12 @@ class _HomePageState extends State<HomePage> {
                       child: Text('No Data'),
                     );
                   }
-                  return ListView.builder(itemBuilder: (context, index) {
-                    final product = snapshot.data![index];
-                    return ProductCardTile(product: product);
-                  });
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final product = snapshot.data![index];
+                        return ProductCardTile(product: product);
+                      });
                 }
                 return Container();
               }),
@@ -71,13 +73,22 @@ class ProductCardTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      child: ListTile(
+      child: ExpansionTile(
           leading: CircleAvatar(
             backgroundImage: NetworkImage(product.image),
           ),
           title: Text(product.title),
           subtitle: Text(product.category),
-          trailing: Text('\$${product.price.toString()}')),
+          trailing: Text('\$${product.price.toString()}'),
+          children: [
+            Text(
+              product.description,
+              style: const TextStyle(
+                  letterSpacing: 1.0,
+                  fontSize: 17,
+                  textBaseline: TextBaseline.alphabetic),
+            )
+          ]),
     );
   }
 }
