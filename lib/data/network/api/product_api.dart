@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:fakeshop/data/network/api/constant/endpoints.dart';
 import 'package:fakeshop/data/network/dio_client.dart';
 
+//this class contains
+//a dio class client
+//behaviors to perform CRUD ops to
+//product object through dioClient defined methods
 class ProductApi {
   final DioClient dioClient;
 
@@ -28,6 +32,7 @@ class ProductApi {
 
   Future<Response> getProducts() async {
     try {
+      //use our Dio class to perform Get
       final Response response = await dioClient.get(Endpoints.products);
       return response;
     } catch (e) {
