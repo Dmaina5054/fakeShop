@@ -39,4 +39,16 @@ class ProductApi {
       rethrow;
     }
   }
+
+  Future<Response> updateProduct(String title, double price, String description,
+      String image, String category) async {
+    final Response response = await dioClient.put(Endpoints.products, data: {
+      title: title,
+      price: price,
+      description: description,
+      image: image,
+      category: category
+    });
+    return response;
+  }
 }

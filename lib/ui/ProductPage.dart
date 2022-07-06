@@ -46,12 +46,18 @@ class _HomePageState extends State<HomePage> {
                       child: Text('No Data'),
                     );
                   }
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        final product = snapshot.data![index];
-                        return ProductCardTile(product: product);
-                      });
+                  return RefreshIndicator(
+                    onRefresh: () {
+                      print('refreshed');
+                      return Future.value();
+                    },
+                    child: ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          final product = snapshot.data![index];
+                          return ProductCardTile(product: product);
+                        }),
+                  );
                 }
                 return Container();
               }),

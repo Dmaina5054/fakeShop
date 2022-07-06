@@ -35,4 +35,16 @@ class ProductRepository {
       throw errorMessage;
     }
   }
+
+  Future<Product> editProduct(String title, double price, String description,
+      String image, String category) async {
+    try {
+      final response = await productApi.updateProduct(
+          title, price, description, image, category);
+      return Product.fromMap(response.data);
+    } on DioError catch (e) {
+      final errorMessage = DioExceptions.fromDioError(e).toString();
+      throw errorMessage;
+    }
+  }
 }
