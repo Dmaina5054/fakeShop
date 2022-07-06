@@ -22,12 +22,12 @@ class AddProductButton extends StatelessWidget {
                   homeController: homeController,
                   onSubmit: () async {
                     await homeController.addProduct();
-                    // Navigator.pop(context);
-                    // homeController.nameController.clear();
-                    // homeController.priceController.clear();
-                    // homeController.categoryController.clear();
-                    // homeController.descriptionController.clear();
-                    // homeController.imageController.clear();
+                    Navigator.pop(context);
+                    homeController.nameController.clear();
+                    homeController.priceController.clear();
+                    homeController.categoryController.clear();
+                    homeController.descriptionController.clear();
+                    homeController.imageController.clear();
 
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: ((context) => NewProductPage())));

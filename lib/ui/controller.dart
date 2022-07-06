@@ -2,7 +2,6 @@
 import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:fakeshop/di/service_locator.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get_it/get_it.dart';
 
 import '../data/models/product.dart';
 
@@ -40,5 +39,18 @@ class HomeController {
 
     addedProducts.add(newProduct);
     return newProduct;
+  }
+
+  Future<Product> updateProduct(String title, double price, String description,
+      String image, String category) async {
+    final updatedUser = await productRepository.editProduct(
+      title,
+      price,
+      description,
+      image,
+      category,
+    );
+    addedProducts.add(updatedUser);
+    return updatedUser;
   }
 }

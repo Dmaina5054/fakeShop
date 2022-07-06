@@ -2,7 +2,7 @@ import 'package:fakeshop/ui/controller.dart';
 import 'package:flutter/material.dart';
 
 class ProductForm extends StatelessWidget {
-  const ProductForm({
+  ProductForm({
     Key? key,
     required this.homeController,
     this.isUpdate,
@@ -54,9 +54,8 @@ class ProductForm extends StatelessWidget {
           ElevatedButton(
             onPressed: onSubmit,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(isUpdate! ? 'Update' : 'Add'),
-            ),
+                padding: const EdgeInsets.all(8.0),
+                child: isUpdate != null ? Text('Update') : Text('Add')),
           ),
         ],
       ),
