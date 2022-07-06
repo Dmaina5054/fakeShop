@@ -3,6 +3,7 @@ import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:fakeshop/di/service_locator.dart';
 import 'package:fakeshop/ui/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'add_product_button.dart';
 
@@ -93,6 +94,28 @@ class ProductCardTile extends StatelessWidget {
                   letterSpacing: 1.0,
                   fontSize: 17,
                   textBaseline: TextBaseline.alphabetic),
+            ),
+            Text(
+              product.rating.count.toString(),
+              style: const TextStyle(
+                  letterSpacing: 1.0,
+                  fontSize: 17,
+                  textBaseline: TextBaseline.alphabetic),
+            ),
+            RatingBar.builder(
+              initialRating: product.rating.rate,
+              minRating: 1,
+              direction: Axis.horizontal,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+              onRatingUpdate: (rating) {
+                print(rating);
+              },
             )
           ]),
     );
