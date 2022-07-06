@@ -65,8 +65,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  _buildAddButton() {}
 }
 
 class ProductCardTile extends StatelessWidget {

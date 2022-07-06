@@ -22,6 +22,7 @@ class _NewProductPageState extends State<NewProductPage> {
       ),
       body: ListView.builder(itemBuilder: (context, index) {
         final Product product = homeController.addedProducts[index];
+
         return ListTile(
           onLongPress: () async {},
         );
