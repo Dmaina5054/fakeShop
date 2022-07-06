@@ -13,7 +13,6 @@ class ProductRepository {
   Future<List<Product>> getProducts() async {
     try {
       final response = await productApi.getProducts();
-      print(response.data);
       final products =
           (response.data as List).map((e) => Product.fromMap(e)).toList();
 

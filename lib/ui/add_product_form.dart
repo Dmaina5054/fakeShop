@@ -26,26 +26,26 @@ class ProductForm extends StatelessWidget {
             ),
           ),
           TextField(
-            controller: homeController.nameController,
+            controller: homeController.priceController,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
               labelText: 'Price',
             ),
           ),
           TextField(
-            controller: homeController.jobController,
+            controller: homeController.descriptionController,
             decoration: const InputDecoration(
               labelText: 'Description',
             ),
           ),
           TextField(
-            controller: homeController.nameController,
+            controller: homeController.imageController,
             decoration: const InputDecoration(
               labelText: 'Image',
             ),
           ),
           TextField(
-            controller: homeController.jobController,
+            controller: homeController.categoryController,
             decoration: const InputDecoration(
               labelText: 'category',
             ),

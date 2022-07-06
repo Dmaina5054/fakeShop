@@ -4,6 +4,8 @@ import 'package:fakeshop/di/service_locator.dart';
 import 'package:fakeshop/ui/controller.dart';
 import 'package:flutter/material.dart';
 
+import 'add_product_button.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _buildAddButton(),
+      floatingActionButton: AddProductButton(),
       appBar: AppBar(
         title: const Text('Fake Shop'),
       ),

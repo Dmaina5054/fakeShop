@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'new_product_page.dart';
 
-class AddProduct extends StatelessWidget {
-  AddProduct({Key? key}) : super(key: key);
+class AddProductButton extends StatelessWidget {
+  AddProductButton({Key? key}) : super(key: key);
 
   final homeController = getIt<HomeController>();
 
@@ -22,12 +22,12 @@ class AddProduct extends StatelessWidget {
                   homeController: homeController,
                   onSubmit: () async {
                     await homeController.addProduct();
-                    Navigator.pop(context);
-                    homeController.nameController.clear();
-                    homeController.priceController.clear();
-                    homeController.categoryController.clear();
-                    homeController.descriptionController.clear();
-                    homeController.imageController.clear();
+                    // Navigator.pop(context);
+                    // homeController.nameController.clear();
+                    // homeController.priceController.clear();
+                    // homeController.categoryController.clear();
+                    // homeController.descriptionController.clear();
+                    // homeController.imageController.clear();
 
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: ((context) => NewProductPage())));

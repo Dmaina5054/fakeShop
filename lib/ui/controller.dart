@@ -19,6 +19,7 @@ class HomeController {
   //textfield controllers
 
   //local variables
+  final List<Product> addedProducts = [];
 
   //methods
 
@@ -36,5 +37,8 @@ class HomeController {
         descriptionController.text,
         imageController.text,
         categoryController.text);
+
+    addedProducts.add(newProduct);
+    return newProduct;
   }
 }
