@@ -1,12 +1,17 @@
+import 'package:fakeshop/bloc/product/product_event.dart';
 import 'package:fakeshop/data/models/product.dart';
 import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:fakeshop/di/service_locator.dart';
 import 'package:fakeshop/ui/controller.dart';
+import 'package:fakeshop/utils/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+import '../bloc/product/product_bloc.dart';
+import '../bloc/product/product_state.dart';
 import 'add_product_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,35 +26,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<ProductBloc>(context).add(LoadProductEvent());
     return Scaffold(
       floatingActionButton: AddProductButton(),
       appBar: AppBar(
         title: const Text('Fake Shop'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.9,
-          width: double.infinity,
-          child: FutureBuilder(
-              future: homeController.getProducts(),
-              builder: (context, AsyncSnapshot<List<Product>> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  final error = snapshot.error;
-                  return Center(
-                    child: Text("Error: " + error.toString()),
-                  );
-                } else if (snapshot.hasData) {
-                  if (snapshot.data == null) {
-                    return const Center(
-                      child: Text('No Data'),
-                    );
-                  }
-                  return RefreshIndicator(
+      body: BlocBuilder<ProductBloc, ProductState>(
+        builder: (context, state) {
+          print(state);
+          return state is LoadingProductState
+              ? const CircularProgressIndicator()
+              : state is LoadedProductState
+                  ? RefreshIndicator(
                       onRefresh: () {
                         setState(() {});
                         return Future.value();
@@ -57,12 +46,12 @@ class _HomePageState extends State<HomePage> {
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: GridView.builder(
-                            itemCount: snapshot.data!.length,
+                            itemCount: state.productList.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2),
                             itemBuilder: (context, index) {
-                              Product product = snapshot.data![index];
+                              Product product = state.productList[index];
                               return InkWell(
                                 onTap: () {
                                   showBottomSheet(
@@ -108,11 +97,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               );
                             }),
-                      ));
-                }
-                return Container();
-              }),
-        ),
+                      ))
+                  : Container(
+                      color: Colors.amber,
+                    );
+        },
       ),
     );
   }

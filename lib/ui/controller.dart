@@ -30,10 +30,7 @@ class HomeController {
   }
 
   Future<Product> addProduct() async {
-    print(
-      int.parse(priceController.text).toDouble(),
-    );
-    print('invoked');
+
     final newProduct = await productRepository.addProduct(
         nameController.text,
         double.parse(priceController.text).toDouble(),
