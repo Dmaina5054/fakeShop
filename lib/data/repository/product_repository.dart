@@ -24,14 +24,16 @@ class ProductRepository {
   }
 
   //add product
-  Future<Product> addProduct(String title, double price, String description,
+  Future addProduct(String title, double price, String description,
       String image, String category) async {
     try {
       final response = await productApi.addProduct(
           title, price, description, image, category);
-      return Product.fromMap(response.data);
+
+      return response.statusCode;
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
+      print(e.message);
       throw errorMessage;
     }
   }
@@ -41,10 +43,13 @@ class ProductRepository {
     try {
       final response = await productApi.updateProduct(
           title, price, description, image, category);
+
+      print(response);
       return Product.fromMap(response.data);
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       throw errorMessage;
+      
     }
   }
 }

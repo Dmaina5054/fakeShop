@@ -78,46 +78,66 @@ class ProductCardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: ExpansionTile(
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(product.image),
-          ),
-          title: Text(product.title),
-          subtitle: Text(product.category),
-          trailing: Text('\$${product.price.toString()}'),
-          children: [
-            Text(
-              product.description,
-              style: const TextStyle(
-                  letterSpacing: 1.0,
-                  fontSize: 17,
-                  textBaseline: TextBaseline.alphabetic),
+    return SizedBox(
+      height: 200,
+      width: double.infinity,
+      child: Card(
+        shadowColor: Colors.green,
+        elevation: 5,
+        child: ExpansionTile(
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(product.image),
             ),
-            Text(
-              product.rating.count.toString(),
-              style: const TextStyle(
-                  letterSpacing: 1.0,
-                  fontSize: 17,
-                  textBaseline: TextBaseline.alphabetic),
-            ),
-            RatingBar.builder(
-              initialRating: product.rating.rate,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
+            title: Text(product.title),
+            subtitle: Container(
+              child: Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(product.category),
+                    Row(
+                      children: [
+                        RatingBar.builder(
+                          initialRating: product.rating.rate,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: Colors.green,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
+                        Text(
+                          product.rating.rate.toString(),
+                          style: const TextStyle(
+                              fontSize: 17,
+                              textBaseline: TextBaseline.alphabetic),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            )
-          ]),
+            ),
+            trailing: Text('\$${product.price.toString()}'),
+            children: [
+              Container(
+                height: 60,
+                child: Text(
+                  product.description,
+                  style: const TextStyle(
+                      letterSpacing: 1.0,
+                      fontSize: 17,
+                      textBaseline: TextBaseline.alphabetic),
+                ),
+              ),
+            ]),
+      ),
     );
   }
 }
