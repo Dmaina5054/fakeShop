@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
       ),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
-          print(state);
           return state is LoadingProductState
               ? const CircularProgressIndicator()
               : state is LoadedProductState
