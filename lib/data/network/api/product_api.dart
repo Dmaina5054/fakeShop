@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:fakeshop/data/network/api/constant/endpoints.dart';
 import 'package:fakeshop/data/network/dio_client.dart';
 
+import '../../../utils/logger.dart';
+
 //this class contains
 //a dio class client
 //behaviors to perform CRUD ops to
@@ -34,9 +36,10 @@ class ProductApi {
     try {
       //use our Dio class to perform Get
       final Response response = await dioClient.get(Endpoints.products);
-      print(response.data.toString());
+
       return response;
     } catch (e) {
+      Logger.data(e);
       rethrow;
     }
   }

@@ -1,8 +1,8 @@
-import 'package:fakeshop/data/models/product.dart';
+import 'dart:io';
 import 'package:fakeshop/ui/controller.dart';
 import 'package:flutter/material.dart';
 
-class ProductForm extends StatelessWidget {
+class ProductForm extends StatefulWidget {
   ProductForm({
     Key? key,
     required this.homeController,
@@ -14,54 +14,67 @@ class ProductForm extends StatelessWidget {
   final VoidCallback onSubmit;
 
   @override
+  State<ProductForm> createState() => _ProductFormState();
+}
+
+class _ProductFormState extends State<ProductForm> {
+  final _formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            controller: homeController.nameController,
-            decoration: const InputDecoration(
-              labelText: 'Title',
-            ),
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: widget.homeController.nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                ),
+              ),
+              TextFormField(
+                controller: widget.homeController.priceController,
+                keyboardType: Platform.isLinux
+                    ? TextInputType.number
+                    : TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Price',
+                ),
+              ),
+              TextFormField(
+                controller: widget.homeController.descriptionController,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                ),
+              ),
+              TextFormField(
+                controller: widget.homeController.imageController,
+                decoration: const InputDecoration(
+                  labelText: 'Image',
+                ),
+              ),
+              TextFormField(
+                controller: widget.homeController.categoryController,
+                decoration: const InputDecoration(
+                  labelText: 'category',
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    widget.homeController.addProduct();
+                  }
+                },
+                child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                        widget.isUpdate != null ? Text('Update') : Text('Add')),
+              ),
+            ],
           ),
-          TextField(
-            controller: homeController.priceController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              labelText: 'Price',
-            ),
-          ),
-          TextField(
-            controller: homeController.descriptionController,
-            decoration: const InputDecoration(
-              labelText: 'Description',
-            ),
-          ),
-          TextField(
-            controller: homeController.imageController,
-            decoration: const InputDecoration(
-              labelText: 'Image',
-            ),
-          ),
-          TextField(
-            controller: homeController.categoryController,
-            decoration: const InputDecoration(
-              labelText: 'category',
-            ),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              homeController.addProduct();
-            },
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: isUpdate != null ? Text('Update') : Text('Add')),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }

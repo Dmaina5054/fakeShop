@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:fakeshop/data/models/product.dart';
 import 'package:fakeshop/data/network/api/product_api.dart';
+import 'package:fakeshop/utils/logger.dart';
 
 import '../network/dio_exception.dart';
 
@@ -27,14 +28,18 @@ class ProductRepository {
   Future addProduct(String title, double price, String description,
       String image, String category) async {
     try {
-      final response = await productApi.addProduct(
-          title, price, description, image, category);
+      // final response = await productApi.addProduct(
+      //     title, price, description, image, category);
 
-      return response.statusCode;
+      var response = 'reste';
+
+      Logger.data(response);
+
+      return response;
     } on DioError catch (e) {
-      final errorMessage = DioExceptions.fromDioError(e).toString();
-      print(e.message);
-      throw errorMessage;
+      DioExceptions.fromDioError(e).toString();
+
+      rethrow;
     }
   }
 
@@ -44,12 +49,10 @@ class ProductRepository {
       final response = await productApi.updateProduct(
           title, price, description, image, category);
 
-      print(response);
       return Product.fromMap(response.data);
     } on DioError catch (e) {
       final errorMessage = DioExceptions.fromDioError(e).toString();
       throw errorMessage;
-      
     }
   }
 }
