@@ -12,4 +12,5 @@ class Endpoints {
 
   static const String products = 'https://fakestoreapi.com/products';
   static const String addproducts = 'https://fakestoreapi.com/products';
+  static const String getbycategory = 'https://fakestoreapi.com/products/category/';
 }

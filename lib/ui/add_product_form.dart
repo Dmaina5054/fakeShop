@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:fakeshop/ui/controller.dart';
+import 'package:fakeshop/ui/controller/controller.dart';
 import 'package:flutter/material.dart';
 
 class ProductForm extends StatefulWidget {

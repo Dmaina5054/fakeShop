@@ -3,7 +3,7 @@ import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:fakeshop/di/service_locator.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../data/models/product.dart';
+import '../../data/models/product.dart';
 
 class HomeController {
   //Repository
@@ -30,7 +30,6 @@ class HomeController {
   }
 
   Future<Product> addProduct() async {
-
     final newProduct = await productRepository.addProduct(
         nameController.text,
         double.parse(priceController.text).toDouble(),
@@ -53,5 +52,10 @@ class HomeController {
     );
     addedProducts.add(updatedUser);
     return updatedUser;
+  }
+
+  Future productByCategory(String category) async {
+    final products = await productRepository.productByCat(category);
+    return products;
   }
 }

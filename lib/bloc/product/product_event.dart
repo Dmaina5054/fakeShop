@@ -12,3 +12,8 @@ class LoadedProductEvent extends ProductEvent {
   List<Product> productList;
   LoadedProductEvent(this.productList);
 }
+
+class LoadProductByCategoryEvent extends ProductEvent {
+  String category;
+  LoadProductByCategoryEvent(this.category);
+}

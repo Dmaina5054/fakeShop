@@ -4,7 +4,7 @@ import 'package:fakeshop/data/network/dio_client.dart';
 import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:get_it/get_it.dart';
 
-import '../ui/controller.dart';
+import '../ui/controller/controller.dart';
 
 //ensure singletons
 final getIt = GetIt.instance;

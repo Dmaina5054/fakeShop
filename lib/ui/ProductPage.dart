@@ -2,7 +2,7 @@ import 'package:fakeshop/bloc/product/product_event.dart';
 import 'package:fakeshop/data/models/product.dart';
 import 'package:fakeshop/data/repository/product_repository.dart';
 import 'package:fakeshop/di/service_locator.dart';
-import 'package:fakeshop/ui/controller.dart';
+import 'package:fakeshop/ui/controller/controller.dart';
 import 'package:fakeshop/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,9 +48,10 @@ class _HomePageState extends State<HomePage> {
                             itemCount: state.productList.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2),
+                                    crossAxisCount: 1),
                             itemBuilder: (context, index) {
                               Product product = state.productList[index];
+                              
                               return InkWell(
                                 onTap: () {
                                   showBottomSheet(

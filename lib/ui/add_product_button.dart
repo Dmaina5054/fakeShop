@@ -1,6 +1,6 @@
 import 'package:fakeshop/di/service_locator.dart';
 import 'package:fakeshop/ui/add_product_form.dart';
-import 'package:fakeshop/ui/controller.dart';
+import 'package:fakeshop/ui/controller/controller.dart';
 import 'package:flutter/material.dart';
 
 import 'new_product_page.dart';

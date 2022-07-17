@@ -1,5 +1,5 @@
 import 'package:fakeshop/di/service_locator.dart';
-import 'package:fakeshop/ui/controller.dart';
+import 'package:fakeshop/ui/controller/controller.dart';
 import 'package:flutter/material.dart';
 
 import '../data/models/product.dart';

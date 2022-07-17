@@ -55,4 +55,11 @@ class ProductApi {
     });
     return response;
   }
+
+  Future getByCategory(String category) async {
+    final Response response =
+        await dioClient.get(Endpoints.getbycategory + category);
+    Logger.data(response);
+    response.statusCode == 200 ? response : null;
+  }
 }

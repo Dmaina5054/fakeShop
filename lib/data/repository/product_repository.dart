@@ -55,4 +55,13 @@ class ProductRepository {
       throw errorMessage;
     }
   }
+
+  Future productByCat(String category) async {
+    try {
+      final List<Product> products = await productApi.getByCategory(category);
+      return products;
+    } on DioError catch (e) {
+      throw DioExceptions.fromDioError(e);
+    }
+  }
 }
