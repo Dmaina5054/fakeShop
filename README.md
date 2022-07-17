@@ -43,4 +43,7 @@ We build a minimalistic UI that has a Product Page with a list of Products. We u
 In our UI, we either show the data returned or an Error.
 
 
+<h2>State Management</h2>
+We use <a href="https://pub.dev/packages/bloc">Bloc Pattern</a> as our state management approach. Bloc allows us to define classes that can can listen for events to trigger state changes.We organiza our bloc into modules in the product module. We also add a <a href="https://pub.dev/documentation/bloc/latest/bloc/BlocObserver-class.html">Bloc Observer</a> class to expose our bloc behavior as different events are received.
+
 
